@@ -68,7 +68,7 @@ export abstract class Device {
                 name: this.device?.name || undefined,
                 requestBody: {
                     command: name,
-                    params: params
+                    params: params as { [key: string]: any } | null
                 }
             });
             this.log.debug(`Execution of command ${name} returned ${JSON.stringify(response.data.results)}`, this.getDisplayName());

@@ -48,6 +48,6 @@
     "copyfiles": "^2.4.1",
     "homebridge": "^2.0.0-beta.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.4.3"
+    "typescript": "^5.9.3"
   }
 }

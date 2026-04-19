@@ -250,18 +250,18 @@ export abstract class StreamingDelegate<T extends CameraController> implements C
       videoPort: request.video.port,
       videoReturnPort: videoReturnPort,
       videoCryptoSuite: request.video.srtpCryptoSuite,
-      videoSRTP: Buffer.concat([request.video.srtp_key, request.video.srtp_salt]),
+      videoSRTP: Buffer.concat([request.video.srtp_key, request.video.srtp_salt] as unknown as Uint8Array[]),
       videoSSRC: videoSSRC,
 
       audioPort: request.audio.port,
       audioReturnPort: audioReturnPort,
       audioCryptoSuite: request.audio.srtpCryptoSuite,
-      audioSRTP: Buffer.concat([request.audio.srtp_key, request.audio.srtp_salt]),
+      audioSRTP: Buffer.concat([request.audio.srtp_key, request.audio.srtp_salt] as unknown as Uint8Array[]),
       audioSSRC: audioSSRC
     };
 
     const response: PrepareStreamResponse = {
-      address: currentAddress,
+      addressOverride: currentAddress,
       video: {
         port: videoReturnPort,
         ssrc: videoSSRC,
@@ -553,11 +553,11 @@ export abstract class StreamingDelegate<T extends CameraController> implements C
       throw new Error('Streaming server already closed.')
     }
 
-    const pending: Array<Buffer> = [];
+    const pending: Array<Uint8Array> = [];
 
     try {
       for await (const box of this.recordingSessionInfo.hksvStreamer.generator()) {
-        pending.push(box.header, box.data);
+        pending.push(box.header as unknown as Uint8Array, box.data as unknown as Uint8Array);
 
         const motionDetected = this.accessory.getService(this.hap.Service.MotionSensor)?.getCharacteristic(this.platform.Characteristic.MotionDetected).value;
 

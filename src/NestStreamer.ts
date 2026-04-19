@@ -84,7 +84,7 @@ export class WebRtcNestStreamer extends NestStreamer {
         audioTransceiver.onTrack.subscribe((track) => {
             audioTransceiver.sender.replaceTrack(track);
             track.onReceiveRtp.subscribe((rtp) => {
-                this.udp!.send(rtp.serialize(), audioPort, "127.0.0.1");
+                this.udp!.send(rtp.serialize() as unknown as Uint8Array, audioPort, "127.0.0.1");
             });
         });
 
@@ -93,7 +93,7 @@ export class WebRtcNestStreamer extends NestStreamer {
         videoTransceiver.onTrack.subscribe((track) => {
             videoTransceiver.sender.replaceTrack(track);
             track.onReceiveRtp.subscribe((rtp) => {
-                this.udp!.send(rtp.serialize(), videoPort, "127.0.0.1");
+                this.udp!.send(rtp.serialize() as unknown as Uint8Array, videoPort, "127.0.0.1");
             });
             track.onReceiveRtp.once(() => {
                 setInterval(() => videoTransceiver.receiver.sendRtcpPLI(track.ssrc!), 2000);
