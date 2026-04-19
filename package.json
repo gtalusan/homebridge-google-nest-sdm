@@ -1,6 +1,6 @@
 {
   "name": "@george.talusan/homebridge-google-nest-sdm",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A homebridge plugin that uses the Google Smart Device Management API.",
   "main": "dist/index.js",
   "scripts": {
@@ -14,10 +14,6 @@
     "homebridge": ">=1.4.0 || ^2.0.0-beta.0",
     "node": ">=18 || >=20 || >=22 || >=24"
   },
-  "funding": {
-    "type": "paypal",
-    "url": "https://www.paypal.com/donate/?business=EVN8JACZRMPTJ"
-  },
   "keywords": [
     "homebridge",
     "homebridge-plugin",
@@ -27,8 +23,8 @@
     "thermostat",
     "smart-device-managment"
   ],
-  "repository": "github:potmat/homebridge-google-nest-sdm",
-  "homepage": "https://github.com/potmat/homebridge-google-nest-sdm",
+  "repository": "github:gtalusan/homebridge-google-nest-sdm",
+  "homepage": "https://github.com/gtalusan/homebridge-google-nest-sdm",
   "license": "ISC",
   "dependencies": {
     "@google-cloud/pubsub": "^2.18.1",
